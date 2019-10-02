@@ -35,7 +35,7 @@ my $dbh = DBI->connect($dsn, $mysql_user, $mysql_password) or die $DBI::errstr;
 ####################################
 
 my $num_input_columns_vcf = 8; # The number of columns expected in the input VCF
-my $num_input_columns_tsv = 35; # The number of columns expected in the input TSV
+my $num_input_columns_tsv = 37; # The number of columns expected in the input TSV
 my $num_insert_columns_cosmic = 4; # The number of columns being inserted into the DB
 my $num_insert_columns_variants = 4; # The number of columns being inserted into the DB
 my $num_insert_columns_links = 5; # The number of columns being inserted into the DB
