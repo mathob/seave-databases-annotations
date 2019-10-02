@@ -201,7 +201,7 @@ foreach my $cosmic_number (keys %cosmic_numbers) {
 	my $cosmic_count = 0;
 
 	# Create the primary site count string
-	foreach my $primary_site (keys $cosmic_numbers{$cosmic_number}{"primary_site"}) {
+	foreach my $primary_site (keys %{$cosmic_numbers{$cosmic_number}{"primary_site"}}) {
 		$primary_site_count .= $primary_site.": ".$cosmic_numbers{$cosmic_number}{"primary_site"}{$primary_site}."; ";
 
 		# Determine the total COSMIC count from the number of primary sites observed for the COSMIC number
@@ -209,7 +209,7 @@ foreach my $cosmic_number (keys %cosmic_numbers) {
 	}
 
 	# Create the primary histology count string
-	foreach my $primary_histology (keys $cosmic_numbers{$cosmic_number}{"primary_histology"}) {
+	foreach my $primary_histology (keys %{$cosmic_numbers{$cosmic_number}{"primary_histology"}}) {
 		$primary_histology_count .= $primary_histology.": ".$cosmic_numbers{$cosmic_number}{"primary_histology"}{$primary_histology}."; ";
 	}
 
@@ -270,9 +270,9 @@ $mysql_query = $mysql_query_fresh;
 
 # Go through every variant
 foreach my $chr (keys %variants) {
-	foreach my $position (keys $variants{$chr}) {
-		foreach my $ref (keys $variants{$chr}{$position}) {
-			foreach my $alt (keys $variants{$chr}{$position}{$ref}) {
+	foreach my $position (keys %{$variants{$chr}}) {
+		foreach my $ref (keys %{$variants{$chr}{$position}}) {
+			foreach my $alt (keys %{$variants{$chr}{$position}{$ref}}) {
 				$mysql_query .= "(?, ?, ?, ?), ";
 
 				# Add the values to be inserted
@@ -330,9 +330,9 @@ $mysql_query = $mysql_query_fresh;
 
 # Go through every COSMIC number for every variant
 foreach my $chr (keys %variants) {
-	foreach my $position (keys $variants{$chr}) {
-		foreach my $ref (keys $variants{$chr}{$position}) {
-			foreach my $alt (keys $variants{$chr}{$position}{$ref}) {
+	foreach my $position (keys %{$variants{$chr}}) {
+		foreach my $ref (keys %{$variants{$chr}{$position}}) {
+			foreach my $alt (keys %{$variants{$chr}{$position}{$ref}}) {
 				foreach my $cosmic_number (@{$variants{$chr}{$position}{$ref}{$alt}}) {
 					$mysql_query .= "(?, (SELECT variants.id FROM variants WHERE chr = ? AND pos = ? AND ref = ? AND alt = ?)), ";
 
