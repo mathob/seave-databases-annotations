@@ -32,17 +32,14 @@ CREATE TABLE block_store (
 	FOREIGN KEY (method_id) REFERENCES methods(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	chr_id INT UNSIGNED NOT NULL,
 	FOREIGN KEY (chr_id) REFERENCES chromosomes(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	`start` INT UNSIGNED NOT NULL,
-	`end` INT UNSIGNED NOT NULL,
+	start INT UNSIGNED NOT NULL,
+	end INT UNSIGNED NOT NULL,
 	date_added DATETIME NOT NULL
 );
 
-CREATE INDEX method_id ON GBS.block_store (method_id);
-CREATE INDEX event_type_id ON GBS.block_store (event_type_id);
-CREATE INDEX chr_id ON GBS.block_store (chr_id);
-CREATE INDEX `start` ON GBS.block_store (`start`);
-CREATE INDEX `end` ON GBS.block_store (`end`);
-CREATE INDEX event_cn ON GBS.block_store (event_cn);
+CREATE INDEX start ON block_store (start);
+CREATE INDEX end ON block_store (end);
+CREATE INDEX event_cn ON block_store (event_cn);
 
 #------------------------------
 
@@ -59,8 +56,6 @@ CREATE TABLE links (
 	FOREIGN KEY (link_type_id) REFERENCES link_types(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE INDEX link_type_id ON GBS.links (link_type_id);
-
 #------------------------------
 
 CREATE TABLE event_links (
@@ -71,8 +66,7 @@ CREATE TABLE event_links (
 	PRIMARY KEY(link_id, block_store_id)
 );
 
-CREATE INDEX link_id ON GBS.event_links (link_id);
-CREATE INDEX block_store_id ON GBS.event_links (block_store_id);
+CREATE INDEX link_id ON event_links (link_id); # necessary?
 
 #------------------------------
 
@@ -99,8 +93,7 @@ CREATE TABLE sample_groups (
 	PRIMARY KEY(block_store_id, sample_id)
 );
 
-CREATE INDEX sample_id ON GBS.sample_groups (sample_id);
-CREATE INDEX block_store_id ON GBS.sample_groups (block_store_id);
+CREATE INDEX block_store_id ON sample_groups (block_store_id);
 
 #------------------------------
 
@@ -122,9 +115,9 @@ CREATE TABLE annotation_values (
 	PRIMARY KEY(block_store_id, sample_id, annotation_id)
 );
 
-CREATE INDEX block_store_id ON GBS.annotation_values (block_store_id);
-CREATE INDEX sample_id ON GBS.annotation_values (sample_id);
-CREATE INDEX annotation_id ON GBS.annotation_values (annotation_id);
+CREATE INDEX block_store_id ON annotation_values (block_store_id);
+CREATE INDEX sample_id ON annotation_values (sample_id);
+CREATE INDEX annotation_id ON annotation_values (annotation_id);
 
 #------------------------------
 
@@ -136,7 +129,7 @@ CREATE TABLE genes_to_positions (
 	`end` INT UNSIGNED NOT NULL
 );
 
-CREATE INDEX gene_name ON GBS.genes_to_positions (gene_name);
-CREATE INDEX chromosome ON GBS.genes_to_positions (chromosome);
-CREATE INDEX start ON GBS.genes_to_positions (start);
-CREATE INDEX end ON GBS.genes_to_positions (end);
+CREATE INDEX gene_name ON genes_to_positions (gene_name);
+CREATE INDEX chromosome ON genes_to_positions (chromosome);
+CREATE INDEX start ON genes_to_positions (start);
+CREATE INDEX end ON genes_to_positions (end);
