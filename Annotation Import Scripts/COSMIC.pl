@@ -223,8 +223,8 @@ foreach my $cosmic_number (keys %cosmic_numbers) {
 	# Add the values to be inserted
 	push(@insert_values, $cosmic_number); # cosmic_number
 	push(@insert_values, $cosmic_count); # count
-	push(@insert_values, $primary_site_count); # primary_site
-	push(@insert_values, $primary_histology_count); # primary_histology
+	push(@insert_values, substr($primary_site_count,0,500) ); # primary_site
+	push(@insert_values, substr($primary_histology_count,0,500) ); # primary_histology
 
 	# If there are $num_rows_to_add_per_insert waiting to be inserted OR the end of the input file has been reached so all the remaining rows should be inserted
 	if ($num_rows_to_add_per_insert == scalar(@insert_values) / $num_insert_columns_cosmic || (scalar(keys(%cosmic_numbers)) == (scalar(@insert_values) / $num_insert_columns_cosmic) + $inserted_rows)) {		
