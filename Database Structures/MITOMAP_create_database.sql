@@ -16,7 +16,7 @@ CREATE TABLE `mitomap` (
 	DiseaseStatus VARCHAR(1000)
 );
 
-CREATE INDEX mitomap_query ON `mitomap` (chr, pos, ref, alt);
+CREATE INDEX mitomap_query ON `mitomap` (chr, pos, ref(767), alt(767));
 
 /*
 Queries to manually extract information from this database

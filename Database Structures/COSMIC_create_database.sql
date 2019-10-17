@@ -12,7 +12,7 @@ CREATE TABLE variants (
 	alt VARCHAR(4000) NOT NULL
 );
 
-CREATE INDEX variant on variants (chr, pos, ref(1000), alt(1000));
+CREATE INDEX variant on variants (chr, pos, ref(767), alt(767));
 
 -- (1000) above indexes only up to the first 1000 characters
 

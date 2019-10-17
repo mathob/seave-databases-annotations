@@ -15,4 +15,4 @@ CREATE TABLE `clinvar` (
 	clintrait VARCHAR(1000) NOT NULL
 );
 
-CREATE INDEX clinvar_query ON `clinvar` (chr, position, ref, alt);
+CREATE INDEX clinvar_query ON `clinvar` (chr, position, ref(767), alt(767));
