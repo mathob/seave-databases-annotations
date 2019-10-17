@@ -22,17 +22,17 @@ CREATE INDEX mitomap_query ON `mitomap` (chr, pos, ref(767), alt(767));
 Queries to manually extract information from this database
 
 Extract all MITOMAP information for a specific variant:
-SELECT 
+SELECT
 	*
-FROM 
-	MITOMAP.mitomap 
-WHERE 
-	chr = '' 
-AND 
-	pos = '' 
+FROM
+	MITOMAP.mitomap
+WHERE
+	chr = ''
 AND
-	ref = '' 
-AND 
+	pos = ''
+AND
+	ref = ''
+AND
 	alt = ''
 ;
 */

@@ -42,7 +42,7 @@ CREATE INDEX cosmic_number on cosmic_number_to_variant (cosmic_number);
 
 /*
 View the information for a particular variant:
-SELECT 
+SELECT
 	variants.chr,
 	variants.pos,
 	variants.ref,
@@ -51,11 +51,11 @@ SELECT
 	cosmic_numbers.count,
 	cosmic_numbers.primary_site,
 	cosmic_numbers.primary_histology
-FROM 
+FROM
 	variants
-INNER JOIN cosmic_number_to_variant ON cosmic_number_to_variant.variant_id = variants.id 
-INNER JOIN cosmic_numbers ON cosmic_numbers.cosmic_number = cosmic_number_to_variant.cosmic_number 
-WHERE 
+INNER JOIN cosmic_number_to_variant ON cosmic_number_to_variant.variant_id = variants.id
+INNER JOIN cosmic_numbers ON cosmic_numbers.cosmic_number = cosmic_number_to_variant.cosmic_number
+WHERE
 	chr = ''
 AND
 	pos = ''
